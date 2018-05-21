@@ -7,6 +7,7 @@ export default class EditGift extends Component {
             name:'',
             price: 0
         };
+        
     };
 
 handleNameEdit(val){

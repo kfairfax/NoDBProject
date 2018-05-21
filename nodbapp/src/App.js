@@ -4,56 +4,40 @@ import axios from 'axios';
 import CreateGift from './components/CreateGift/CreateGift';
 import Gift from './components/Gift/Gift';
 import Header from './components/Header/Header';
+import giftsUrl from './api'
 
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      gifts: [{
-        id: 0,
-        name: 'Instant Pot',
-        price: 0
-      }, {
-        id: 1,
-        name: 'Marmot Tent',
-        price: 0
-      }, {
-        id: 2,
-        name: 'Hampton Bay Outdoor Patio Set',
-        price: 0
-      },
-      {
-        id: 3,
-        name: 'Coway Air Purifyer',
-        price: 0
-      },
-      {
-        id: 4,
-        name: 'RC Willey 8\'x10\' Rug',
-        price: 0
-      }]
+      gifts: []
     };
+    this.createGift=this.createGift.bind(this);
+    this.updateGift=this.updateGift.bind(this);
+    this.deleteGift=this.deleteGift.bind(this);
   }
 
   createGift(name, price) {
-    axios.post('').then(results =>{
+    axios.post(giftsUrl).then(results =>{
         this.setState({gifts: results.data})
     })
   }
 
-  compnentDidMount() {
-    axios.get('').then(response => (this.setState({ gifts: response.data })
-    ))
+  componentDidMount() {
+    axios.get(giftsUrl).then(response => {
+      this.setState({ gifts: response.data })
+    })
   }
 
   updateGift(id) {
-    axios.put('' + `/${id}`).then(response => { this.setState({ gifts: response.data }) })
+    axios.put(giftsUrl + `/${id}`).then(response => { this.setState({ gifts: response.data }) })
   }
 
   deleteGift(id) {
-    axios.delete('' + `/${id}`).then(response => { this.setState({ gifts: response.data }) })
+    axios.delete(giftsUrl + `/${id}`).then(response => { this.setState({ gifts: response.data }) })
   }
+  
 
   render() {
     const { gifts } = this.state;
@@ -71,6 +55,7 @@ class App extends Component {
               price={gift.price}
               updateGift={this.updateGift}
               deleteGift={this.deleteGift}
+
 
             />
 
