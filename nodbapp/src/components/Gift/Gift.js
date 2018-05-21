@@ -7,14 +7,17 @@ export default class Gift extends Component {
         this.state = {
             editing: false
         };
+       this.hideEdit=this.hideEdit.bind(this);
+        
     };
 
     showEdit() {
         this.setState({ editing: true })
     }
-    // hideEdit() {
-    //     this.setState({ editing: false })
-    // }
+    
+    hideEdit() {
+        this.setState({ editing: false })
+    }
 
 
     render() {
@@ -30,7 +33,8 @@ export default class Gift extends Component {
                     onClick={() => { deleteGift(id) }}>Delete</button>
                 {editing ?
                     <EditGift
-                    updateGift={updateGift}/> : ""}
+                    updateGift={updateGift}
+                    hideEdit={this.hideEdit}/> : ""}
             </div>
         )
     }
