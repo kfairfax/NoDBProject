@@ -7,6 +7,8 @@ import Header from './components/Header/Header';
 import giftsUrl from './api'
 
 
+
+
 class App extends Component {
   constructor() {
     super();
@@ -42,7 +44,7 @@ class App extends Component {
   render() {
     const { gifts } = this.state;
     return (
-      <div className="App">
+      <div className="background">
         <Header />
 
         <CreateGift createGift={this.createGift} />
