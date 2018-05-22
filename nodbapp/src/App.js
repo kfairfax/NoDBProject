@@ -21,19 +21,25 @@ class App extends Component {
   }
 
   createGift(name, price) {
-    axios.post(giftsUrl).then(results =>{
+    axios.post(giftsUrl, {
+      name: name, 
+      price: price
+    }).then(results =>{
         this.setState({gifts: results.data})
     })
   }
 
   componentDidMount() {
-    axios.get(giftsUrl).then(response => {
+    axios.get(giftsUrl,).then(response => {
       this.setState({ gifts: response.data })
     })
   }
 
-  updateGift(id) {
-    axios.put(giftsUrl + `/${id}`).then(response => { this.setState({ gifts: response.data }) })
+  updateGift(id, name, price) {
+    axios.put(giftsUrl + `/${id}`, {
+      name: name, 
+      price: price
+    }).then(response => { this.setState({ gifts: response.data }) })
   }
 
   deleteGift(id) {
@@ -57,8 +63,6 @@ class App extends Component {
               price={gift.price}
               updateGift={this.updateGift}
               deleteGift={this.deleteGift}
-
-
             />
 
           )

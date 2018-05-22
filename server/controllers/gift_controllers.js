@@ -1,10 +1,10 @@
-let gifts =[];
+let gifts = [];
 let id = 0;
 
-module.exports ={
+module.exports = {
     create: (req, res) => {
-        const{name, price}=req.body;
-        gifts.push({id, name, price});
+        const { name, price } = req.body;
+        gifts.push({ id, name, price });
         id++;
         res.status(200).send(gifts)
 
@@ -14,28 +14,26 @@ module.exports ={
 
     },
     update: (req, res) => {
-        const id =req.params.id;
-        const {name}= req.body;
+        const id = req.params.id;
+        const { name, price } = req.body;
 
-        var giftIndex = gifts.findIndex((gift)=>{
-            return gift.id===id;
+        var giftIndex = gifts.findIndex((gift) => {
+            return gift.id === parseInt(id);
         });
 
-
         gifts[giftIndex].name = name;
-        res.status(200).send(gifts);
+        gifts[giftIndex].price = price;
 
+        res.status(200).send(gifts);
     },
     delete: (req, res) => {
-        const id=req.params.id;
-        var giftIndex =gifts.findIndex((gift)=>{
-            return gift.id==id;
-            
-        })
-            gifts.splice(giftIndex, 1);
-            res.status(200).send(gifts);
-    
+        const id = req.params.id;
+        var giftIndex = gifts.findIndex((gift) => {
+            return gift.id == id;
 
+        })
+        gifts.splice(giftIndex, 1);
+        res.status(200).send(gifts);
     }
 }
-    
+

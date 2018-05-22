@@ -26,13 +26,14 @@ export default class Gift extends Component {
 
         return (
             <div className='updateDeleteButtons'>
-                <span className='Gift'>{name} ${price}</span>
-                <button name='Update'
+                <span className='Gift'>{name} (${price})</span>
+                <button name='Update' className="editButton"
                     onClick={() => { this.showEdit() }}>Update</button>
-                <button name='Delete'
+                <button name='Delete' className="editButton"
                     onClick={() => { deleteGift(id) }}>Delete</button>
                 {editing ?
                     <EditGift
+                    id={id}
                     updateGift={updateGift}
                     hideEdit={this.hideEdit}/> : ""}
             </div>

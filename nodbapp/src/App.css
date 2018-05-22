@@ -3,11 +3,7 @@
   background-image: url('./annie-spratt-277548-unsplash.jpg');
   background-size: 100%;
   height:100vh;
- 
-
-
 }
-
 
 .App-header {
   background-color: transparent;
@@ -18,6 +14,14 @@
   justify-content: flex-end;
 }
 
+.App-Child {
+  padding: 20px;
+}
+
+.nameInput, .priceInput {
+  margin-right: 10px;
+}
+
 .App-title {  
   font-size: 3.5em;
   font-family: 'Dancing Script', cursive;
@@ -25,6 +29,18 @@
 
 .App-intro {
   font-size: large;
+}
+
+.updateDeleteButtons {
+  padding: 10px 20px;  
+}
+
+.editButton {
+  margin-left: 10px;
+}
+
+.editPrice, .priceEditButton, .cancelButton {
+  margin-left: 10px;
 }
 
 

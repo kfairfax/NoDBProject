@@ -20,7 +20,7 @@ handlePriceEdit(val){
 }
 
     render() {
-        const{updateGift, hideEdit}=this.props;
+        const {id, updateGift, hideEdit} = this.props;
 
         return (
             <div>
@@ -29,7 +29,7 @@ handlePriceEdit(val){
                 <input className = 'editPrice' placeholder ='Edit Gift Price Here'
                 onChange={(e)=>(this.handlePriceEdit(e.target.value))}/>
                 <button className='priceEditButton'
-                onClick={()=>{updateGift(this.state.name, this.state.price)}}>Save</button>
+                onClick={()=>{updateGift(id, this.state.name, this.state.price)}}>Save</button>
                 <button className='cancelButton'
                 onClick={()=>{hideEdit()}}>Hide Edit</button>
             </div>
