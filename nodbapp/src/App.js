@@ -13,7 +13,9 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      gifts: []
+      gifts: [],
+      nameDay: []
+
     };
     this.createGift=this.createGift.bind(this);
     this.updateGift=this.updateGift.bind(this);
@@ -24,8 +26,8 @@ class App extends Component {
     axios.post(giftsUrl, {
       name: name, 
       price: price
-    }).then(results =>{
-        this.setState({gifts: results.data})
+    }).then(response =>{
+        this.setState({gifts: response.data})
     })
   }
 
@@ -33,6 +35,16 @@ class App extends Component {
     axios.get(giftsUrl,).then(response => {
       this.setState({ gifts: response.data })
     })
+
+    axios.get('https://api.abalin.net/get/getdate?name=Katrina&calendar=us', {
+      headers: {
+        "Access-Control-Allow-Origin": "*"
+      }
+    }).then(response=>{
+      console.log(response.data.results)
+     this.setState({nameDay:response.data.results});
+    })
+    
   }
 
   updateGift(id, name, price) {
@@ -48,10 +60,16 @@ class App extends Component {
   
 
   render() {
-    const { gifts } = this.state;
+    const { gifts, nameDay } = this.state;
+    // console.log(nameDay[0].name);
     return (
       <div className="background">
         <Header />
+        {
+          nameDay.map((date,i) => (
+            <h3 key={i}>My Name Day falls on {date.month} - {date.day}</h3>
+          ))
+        }
 
         <CreateGift createGift={this.createGift} />
         {
